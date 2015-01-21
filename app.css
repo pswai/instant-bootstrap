@@ -1,0 +1,14 @@
+.var-input {
+  width: 250px;
+}
+
+.tab-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-links > li {
+  float: left;
+  padding-right: 10px;
+}
