@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="App" ng-csp>
   <head>
-    <link rel="stylesheet" href="vendors/angular/angular-csp.css">
+    <!-- build:css app.css -->
+    <link rel="stylesheet" href="../vendors/angular/angular-csp.css">
     <link rel="stylesheet" href="app.css">
+    <!-- endbuild -->
   </head>
 
   <body ng-controller="MainCtrl as vm" ng-cloak>
@@ -24,11 +26,16 @@
       </table>
     </div>
 
-    <script src="vendors/lodash/dist/lodash.min.js"></script>
-    <script src="vendors/less/dist/less.js"></script>
-    <script src="vendors/angular/angular.js"></script>
+    <!-- build:js vendors.js -->
+    <script src="../vendors/lodash/dist/lodash.min.js"></script>
+    <script src="../vendors/less/dist/less.js"></script>
+    <script src="../vendors/angular/angular.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js app.js -->
     <script src="panel.js"></script>
     <script src="tabs-config.constant.js"></script>
     <script src="default-config.constant.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

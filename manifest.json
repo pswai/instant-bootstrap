@@ -4,7 +4,7 @@
   "name": "Instant Bootstrap",
   "version": "0.0.1",
   "devtools_page": "devtools.html",
-  "options_page": "panel.html",
+  "options_page": "panel/index.html",
   "background": {
     "scripts": [
       "background.js"

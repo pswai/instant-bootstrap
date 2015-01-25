@@ -1,5 +1,5 @@
 chrome.devtools.panels.create(
   'Bootstrap',
   '',
-  'panel.html'
+  'panel/index.html'
 );
