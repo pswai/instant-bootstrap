@@ -91,11 +91,11 @@ angular.module('App', [])
     });
 
     $http
-      .get('../vendors/bootstrap/less/bootstrap.less')
+      .get('/bootstrap/3.3.2/bootstrap.less')
       .then(function (resp) {
         render(resp.data, {
           async: true,
-          filename: '../vendors/bootstrap/less/bootstrap.less',
+          filename: '/bootstrap/3.3.2/bootstrap.less',
           modifyVars: modifyVars
         });
       }, function (resp) {
