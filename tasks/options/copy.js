@@ -13,6 +13,7 @@ module.exports = {
     }, {
       // Extension files
       src: [
+        'bootstrap/**',
         'background.js',
         'content-scripts.js',
         'devtools.html',
