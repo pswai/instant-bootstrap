@@ -26,14 +26,14 @@ module.exports = {
     files: [{
       expand: true,
       cwd: 'vendors/',
-      src: ['bootstrap-*/less/*.less'],
+      src: ['bootstrap-*/less/**/*.less'],
       dest: 'bootstrap/',
       rename: function (dest, src) {
         var parts = src.split(path.sep);
-        var version = parts[0].split('-')[1];
-        var filename = path.basename(src);
+        var version = parts.shift().split('-')[1];
+        parts.shift(); // remove 'less'
 
-        return path.join(dest, version, filename);
+        return path.join.apply(this, [dest, version].concat(parts));
       }
     }]
   }
