@@ -6,7 +6,6 @@
   "description": "Customize Bootstrap 3 on your page instantly!",
 
   "devtools_page": "devtools.html",
-  "options_page": "panel/index.html",
   "background": {
     "scripts": [
       "background.js"
