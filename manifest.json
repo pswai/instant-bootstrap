@@ -3,6 +3,8 @@
 
   "name": "Instant Bootstrap",
   "version": "0.0.1",
+  "description": "Customize Bootstrap 3 on your page instantly!",
+
   "devtools_page": "devtools.html",
   "options_page": "panel/index.html",
   "background": {
@@ -16,6 +18,7 @@
       "js": ["content-scripts.js"]
     }
   ],
+
   "permissions": [
     "tabs",
     "<all_urls>"
