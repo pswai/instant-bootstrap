@@ -24,6 +24,7 @@ angular.module('ibs.app', [
   vm.modifyVars = {};
   vm.revert = revert;
   vm.update = update;
+  vm.saveCss = saveCss;
   vm.saveVariables = saveVariables;
 
   activate();
@@ -72,6 +73,17 @@ angular.module('ibs.app', [
         vm.status = 'Done!';
       }, function () {
         vm.status = 'Error!';
+      });
+  }
+
+  function saveCss() {
+    compileLess()
+      .then(function (output) {
+        var blob = new Blob([output.css], {
+          type: 'text/plain'
+        });
+
+        saveFile('bootstrap.css', window.URL.createObjectURL(blob));
       });
   }
 
