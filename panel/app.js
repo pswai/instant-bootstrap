@@ -1,4 +1,6 @@
-angular.module('App', [])
+angular.module('ibs.app', [
+  'ibs.utils'
+])
 
 .config(function ($provide) {
   'use strict';
@@ -10,38 +12,6 @@ angular.module('App', [])
       $delegate(exception, cause);
     };
   });
-})
-
-.factory('backgroundPort', function () {
-  'use strict';
-
-  var port = chrome.runtime.connect({
-    name: 'devtools'
-  });
-
-  return port;
-})
-
-.factory('less', function ($q, $window) {
-  'use strict';
-
-  var service = angular.extend({}, $window.less, {
-    render: render
-  });
-
-  return service;
-
-  //////////
-
-  function render(input, options) {
-    var dfd = $q.defer();
-
-    $window.less
-      .render(input, options)
-      .then(dfd.resolve, dfd.reject);
-
-    return dfd.promise;
-  }
 })
 
 .controller('MainCtrl', function ($http, backgroundPort, defaultConfig, less, tabsConfig) {

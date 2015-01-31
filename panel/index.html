@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="App" ng-csp>
+<html ng-app="ibs.app" ng-csp>
   <head>
     <!-- build:css app.css -->
     <link rel="stylesheet" href="../vendors/angular/angular-csp.css">
@@ -47,7 +47,10 @@
     <!-- endbuild -->
 
     <!-- build:js app.js -->
-    <script src="panel.js"></script>
+    <script src="app.js"></script>
+    <script src="utils/utils.module.js"></script>
+    <script src="utils/background-port.service.js"></script>
+    <script src="utils/less.service.js"></script>
     <script src="tabs-config.constant.js"></script>
     <script src="default-config.constant.js"></script>
     <!-- endbuild -->
