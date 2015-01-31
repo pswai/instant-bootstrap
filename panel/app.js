@@ -24,6 +24,7 @@ angular.module('ibs.app', [
   vm.modifyVars = {};
   vm.revert = revert;
   vm.update = update;
+  vm.saveVariables = saveVariables;
 
   activate();
 
@@ -74,5 +75,25 @@ angular.module('ibs.app', [
       .then(function () {
         vm.status = 'Done!';
       });
+  }
+
+  function saveFile(filename, url) {
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.dataset.downloadUrl = ['text/plain', a.download, a.href].join(':');
+    a.click();
+  }
+
+  function saveVariables() {
+    var str = _.reduce(vm.modifyVars, function (result, value, key) {
+      return result + key + ': ' + value + ';\n';
+    }, '');
+
+    var blob = new Blob([str], {
+      type: 'text/plain'
+    });
+
+    saveFile('variables.less', window.URL.createObjectURL(blob));
   }
 });
