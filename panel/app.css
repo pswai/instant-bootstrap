@@ -1,3 +1,15 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+body, body * {
+  box-sizing: border-box;
+}
+
 .var-input {
   width: 250px;
 }
@@ -12,3 +24,34 @@
   float: left;
   padding-right: 10px;
 }
+
+.left-sidebar {
+  width: 150px;
+  float: left;
+  height: 100%;
+  background-color: #e4e4e4;
+}
+
+.content-area {
+  width: calc(100% - 151px);
+  float: left;
+  height: 100%;
+  overflow: auto;
+  padding-left: 10px;
+  border-left: solid 1px #a3a3a3;
+}
+
+.action-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.action-list > li {
+  width: 100%;
+  padding: 10px;
+}
+
+.action-list > li:nth-child(even) {
+  background-color: lightgray;
+};

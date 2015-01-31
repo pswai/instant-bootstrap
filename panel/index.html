@@ -8,22 +8,36 @@
   </head>
 
   <body ng-controller="MainCtrl as vm" ng-cloak>
-    <button type="button" ng-click="vm.update()">Update</button>
-    <span>{{vm.status}}</span>
+    <div class="left-sidebar">
+      <ul class="action-list">
+        <li>
+          <button type="button" ng-click="vm.update()">Update</button>
+          <span>{{vm.status}}</span>
+        </li>
+        <li>
+          <button type="button">Save bootstrap.css</button>
+        </li>
+        <li>
+          <button type="button">Save variables.less</button>
+        </li>
+      </ul>
+    </div>
 
-    <div ng-repeat="tab in vm.tabs">
-      <h4>{{tab.title}}</h4>
-      <table>
-        <tbody>
-          <tr ng-repeat="var in tab.vars">
-            <td>{{var}}</td>
-            <td>
-              <input type="text" class="var-input" ng-model="vm.modifyVars[var]">
-              <button type="button" ng-click="vm.revert(var)" ng-disabled="vm.modifyVars[var] == vm.defaultVars[var]">Reset</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="content-area">
+      <div ng-repeat="tab in vm.tabs">
+        <h4>{{tab.title}}</h4>
+        <table>
+          <tbody>
+            <tr ng-repeat="var in tab.vars">
+              <td>{{var}}</td>
+              <td>
+                <input type="text" class="var-input" ng-model="vm.modifyVars[var]">
+                <button type="button" ng-click="vm.revert(var)" ng-disabled="vm.modifyVars[var] == vm.defaultVars[var]">Reset</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- build:js vendors.js -->
