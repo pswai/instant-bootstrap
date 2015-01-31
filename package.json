@@ -1,6 +1,6 @@
 {
   "name": "instant-bootstrap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Customize Bootstrap 3 on your page instantly!",
   "main": "background.js",
   "scripts": {
