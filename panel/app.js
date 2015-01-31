@@ -37,16 +37,21 @@ angular.module('ibs.app', [
     });
   }
 
-  function render(input, options) {
-    less
-      .render(input, options)
-      .then(function (output) {
-        backgroundPort.postMessage({
-          tabId: chrome.devtools.inspectedWindow.tabId,
-          css: output.css
-        });
-      }, function (error) {
-        vm.status = 'Error!';
+  function compileLess() {
+    var url = '/bootstrap/3.3.2/bootstrap.less';
+    var modifyVars = _.transform(vm.modifyVars, function (result, value, key) {
+      result[key.slice(1)] = value;
+    });
+
+    return $http
+      .get(url)
+      .then(function (resp) {
+        return less
+          .render(resp.data, {
+            async: true,
+            filename: url,
+            modifyVars: modifyVars
+          })
       });
   }
 
@@ -57,23 +62,16 @@ angular.module('ibs.app', [
   function update() {
     vm.status = 'Compiling...';
 
-    var modifyVars = _.transform(vm.modifyVars, function (result, value, key) {
-      result[key.slice(1)] = value;
-    });
-
-    $http
-      .get('/bootstrap/3.3.2/bootstrap.less')
-      .then(function (resp) {
-        render(resp.data, {
-          async: true,
-          filename: '/bootstrap/3.3.2/bootstrap.less',
-          modifyVars: modifyVars
+    compileLess()
+      .then(function (output) {
+        backgroundPort.postMessage({
+          tabId: chrome.devtools.inspectedWindow.tabId,
+          css: output.css
         });
-      }, function (resp) {
-        alert('error');
-      })
-      .then(function () {
+
         vm.status = 'Done!';
+      }, function () {
+        vm.status = 'Error!';
       });
   }
 
