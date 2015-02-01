@@ -19,7 +19,7 @@ angular.module('ibs.app', [
 
   var vm = this;
   vm.defaultVars = {};
-  vm.status = '';
+  vm.status = 'Ready';
   vm.tabs = tabsConfig.tabs;
   vm.modifyVars = {};
   vm.revert = revert;
@@ -70,9 +70,9 @@ angular.module('ibs.app', [
           css: output.css
         });
 
-        vm.status = 'Done!';
+        vm.status = 'Ready';
       }, function () {
-        vm.status = 'Error!';
+        vm.status = 'Error';
       });
   }
 
