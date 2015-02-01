@@ -10,7 +10,7 @@
   <body ng-controller="MainCtrl as vm" ng-cloak>
     <div class="left-sidebar">
       <!-- Action List -->
-      <div class="sidebar-section-header">Actions</div>
+      <div class="sidebar-section-header">Actions ({{vm.status}})</div>
       <div class="sidebar-section-body">
         <ul class="action-list">
           <li>
@@ -25,10 +25,8 @@
         </ul>
       </div>
 
-      <!-- Status -->
-      <div class="sidebar-section-header">Status: {{vm.status}}</div>
-
       <!-- Anchors -->
+      <div class="sidebar-section-header">Categories</div>
       <div class="sidebar-section-body anchor-section">
         <ul class="anchor-list">
           <li ng-repeat="tab in ::vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>
