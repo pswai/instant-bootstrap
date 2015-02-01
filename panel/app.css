@@ -32,6 +32,17 @@ body, body * {
   background-color: #e4e4e4;
 }
 
+.sidebar-section-header {
+  padding: 3px 10px;
+  border-bottom: solid 1px #a3a3a3;
+}
+
+.sidebar-section-body {
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom: solid 1px #a3a3a3;
+}
+
 .content-area {
   width: calc(100% - 151px);
   float: left;
@@ -49,9 +60,13 @@ body, body * {
 
 .action-list > li {
   width: 100%;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
-.action-list > li:nth-child(even) {
-  background-color: lightgray;
-};
+.action-list > li:last-child {
+  padding-bottom: 0;
+}
+
+.action-list > li button {
+  width: 100%;
+}

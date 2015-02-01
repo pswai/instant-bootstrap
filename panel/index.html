@@ -9,18 +9,21 @@
 
   <body ng-controller="MainCtrl as vm" ng-cloak>
     <div class="left-sidebar">
-      <ul class="action-list">
-        <li>
-          <button type="button" ng-click="vm.update()">Update</button>
-          <span>{{vm.status}}</span>
-        </li>
-        <li>
-          <button type="button" ng-click="vm.saveCss()">Save bootstrap.css</button>
-        </li>
-        <li>
-          <button type="button" ng-click="vm.saveVariables()">Save variables.less</button>
-        </li>
-      </ul>
+      <div class="sidebar-section-header">Actions</div>
+      <div class="sidebar-section-body">
+        <ul class="action-list">
+          <li>
+            <button ng-click="vm.update()">Update CSS</button>
+            <span>{{vm.status}}</span>
+          </li>
+          <li>
+            <button ng-click="vm.saveCss()">Save bootstrap.css</button>
+          </li>
+          <li>
+            <button ng-click="vm.saveVariables()">Save variables.less</button>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="content-area">
