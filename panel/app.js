@@ -14,11 +14,12 @@ angular.module('ibs.app', [
   });
 })
 
-.controller('MainCtrl', function ($http, backgroundPort, defaultConfig, less, tabsConfig) {
+.controller('MainCtrl', function ($anchorScroll, $http, $location, backgroundPort, defaultConfig, less, tabsConfig) {
   'use strict';
 
   var vm = this;
   vm.defaultVars = {};
+  vm.jumpToSection = jumpToSection;
   vm.status = 'Ready';
   vm.tabs = tabsConfig.tabs;
   vm.modifyVars = {};
@@ -54,6 +55,11 @@ angular.module('ibs.app', [
             modifyVars: modifyVars
           })
       });
+  }
+
+  function jumpToSection(title) {
+    $location.hash(title);
+    $anchorScroll();
   }
 
   function revert(key) {
