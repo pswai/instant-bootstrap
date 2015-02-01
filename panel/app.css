@@ -10,6 +10,16 @@ body, body * {
   box-sizing: border-box;
 }
 
+.top-anchor-link {
+  float: right;
+  padding: 0 10px; /* Use padding here, larger effective area */
+  cursor: pointer;
+}
+
+.top-anchor-link:hover {
+  text-decoration: underline;
+}
+
 .var-input {
   width: 250px;
 }
