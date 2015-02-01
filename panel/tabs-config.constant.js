@@ -438,7 +438,7 @@ angular.module('ibs.app')
     ]
   }, {
     "title": "Thumbnails",
-    "va@rs": [
+    "vars": [
       "@thumbnail-padding",
       "@thumbnail-bg",
       "@thumbnail-border",
