@@ -14,7 +14,7 @@ angular.module('ibs.app', [
   });
 })
 
-.controller('MainCtrl', function ($anchorScroll, $http, $location, backgroundPort, defaultConfig, less, tabsConfig) {
+.controller('MainCtrl', function ($anchorScroll, $http, $location, backgroundPort, less) {
   'use strict';
 
   var vm = this;
@@ -44,16 +44,15 @@ angular.module('ibs.app', [
 
           _.forEach(variables, function (value, key) {
             section.vars.push(key);
+
+            // Setup default values as well
+            vm.defaultVars[key] = value;
+            vm.modifyVars[key] = value;
           });
 
           vm.tabs.push(section);
         });
       });
-
-    angular.forEach(defaultConfig.vars, function (value, key) {
-      vm.defaultVars[key] = value;
-      vm.modifyVars[key] = value;
-    });
   }
 
   function compileLess() {
