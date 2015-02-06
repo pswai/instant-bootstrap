@@ -1,3 +1,4 @@
 module.exports = {
-  dist: ['.tmp', 'dist']
+  dist: ['.tmp', 'dist'],
+  bootstrap: ['bootstrap']
 };

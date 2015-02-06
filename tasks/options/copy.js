@@ -32,7 +32,6 @@ module.exports = {
       rename: function (dest, src) {
         var parts = src.split(path.sep);
         var version = parts.shift().split('-')[1];
-        parts.shift(); // remove 'less'
 
         return path.join.apply(this, [dest, version].concat(parts));
       }
