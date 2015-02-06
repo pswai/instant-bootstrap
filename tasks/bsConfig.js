@@ -28,12 +28,19 @@ module.exports = function (grunt) {
     var lines = file.split('\n');
     var config = {};
     var currentSection;
+    var isSkippingSection = false;
 
     lines.forEach(function (line) {
       var matches;
       if (matches = line.match('//== (.+)')) {
         currentSection = matches[1].trim();
         config[currentSection] = {};
+
+        // Start of a new section
+        isSkippingSection = false;
+      }
+      else if (matches = line.match('//--') || isSkippingSection) {
+        isSkippingSection = true;
       }
       else if (matches = line.match('(@.+):(.+);')) {
         config[currentSection][matches[1].trim()] = matches[2].trim();
