@@ -2,6 +2,7 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.registerTask('build', [
+    'bsConfig',
     'clean:dist',
     'copy:dist',
     'useminPrepare',
