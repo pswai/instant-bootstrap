@@ -29,7 +29,7 @@
       <div class="sidebar-section-header">Categories</div>
       <div class="sidebar-section-body anchor-section">
         <ul class="anchor-list">
-          <li ng-repeat="tab in ::vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>
+          <li ng-repeat="tab in vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>
         </ul>
       </div>
     </div>
@@ -64,7 +64,6 @@
     <script src="utils/utils.module.js"></script>
     <script src="utils/background-port.service.js"></script>
     <script src="utils/less.service.js"></script>
-    <script src="tabs-config.constant.js"></script>
     <script src="default-config.constant.js"></script>
     <!-- endbuild -->
   </body>

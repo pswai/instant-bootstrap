@@ -21,7 +21,7 @@ angular.module('ibs.app', [
   vm.defaultVars = {};
   vm.jumpToSection = jumpToSection;
   vm.status = 'Ready';
-  vm.tabs = tabsConfig.tabs;
+  vm.tabs = [];
   vm.modifyVars = {};
   vm.revert = revert;
   vm.update = update;
@@ -33,6 +33,23 @@ angular.module('ibs.app', [
   //////////
 
   function activate() {
+    $http
+      .get('/bootstrap/3.3.2/config.json')
+      .then(function (resp) {
+        _.forEach(resp.data, function (variables, sectionName) {
+          var section = {
+            title: sectionName,
+            vars: []
+          };
+
+          _.forEach(variables, function (value, key) {
+            section.vars.push(key);
+          });
+
+          vm.tabs.push(section);
+        });
+      });
+
     angular.forEach(defaultConfig.vars, function (value, key) {
       vm.defaultVars[key] = value;
       vm.modifyVars[key] = value;
@@ -40,7 +57,7 @@ angular.module('ibs.app', [
   }
 
   function compileLess() {
-    var url = '/bootstrap/3.3.2/bootstrap.less';
+    var url = '/bootstrap/3.3.2/less/bootstrap.less';
     var modifyVars = _.transform(vm.modifyVars, function (result, value, key) {
       result[key.slice(1)] = value;
     });
