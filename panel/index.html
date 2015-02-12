@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html ng-app="ibs.app" ng-csp>
-  <head>
-    <!-- build:css app.css -->
-    <link rel="stylesheet" href="../vendors/angular/angular-csp.css">
-    <link rel="stylesheet" href="app.css">
-    <!-- endbuild -->
-  </head>
+<head>
+  <!-- build:css app.css -->
+  <link rel="stylesheet" href="../vendors/angular/angular-csp.css">
+  <link rel="stylesheet" href="app.css">
+  <!-- endbuild -->
+</head>
 
-  <body ng-controller="MainCtrl as vm" ng-cloak>
-    <div class="left-sidebar">
-      <!-- Action List -->
-      <div class="sidebar-section-header">Actions ({{vm.status}})</div>
-      <div class="sidebar-section-body">
-        <ul class="action-list">
-          <li>
-            <button ng-click="vm.update()">Update CSS</button>
-          </li>
-          <li>
-            <button ng-click="vm.saveCss()">Save bootstrap.css</button>
-          </li>
-          <li>
-            <button ng-click="vm.saveVariables()">Save variables.less</button>
-          </li>
-        </ul>
-      </div>
+<body ng-controller="MainCtrl as vm" ng-cloak>
+<div class="left-sidebar">
+  <!-- Action List -->
+  <div class="sidebar-section-header">Actions ({{vm.status}})</div>
+  <div class="sidebar-section-body">
+    <ul class="action-list">
+      <li>
+        <button ng-click="vm.update()">Update CSS</button>
+      </li>
+      <li>
+        <button ng-click="vm.saveCss()">Save bootstrap.css</button>
+      </li>
+      <li>
+        <button ng-click="vm.saveVariables()">Save variables.less</button>
+      </li>
+    </ul>
+  </div>
 
-      <!-- Anchors -->
-      <div class="sidebar-section-header">Categories</div>
-      <div class="sidebar-section-body anchor-section">
-        <ul class="anchor-list">
-          <li ng-repeat="tab in vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>
-        </ul>
-      </div>
-    </div>
+  <!-- Anchors -->
+  <div class="sidebar-section-header">Categories</div>
+  <div class="sidebar-section-body anchor-section">
+    <ul class="anchor-list">
+      <li ng-repeat="tab in vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>
+    </ul>
+  </div>
+</div>
 
-    <div class="content-area">
-      <a id="top-anchor"></a>
-      <div ng-repeat="tab in vm.tabs">
-        <a id="{{tab.title}}"></a>
-        <h4>{{tab.title}} <a class="top-anchor-link" ng-click="vm.jumpToSection('top-anchor')">&uarr;</a></h4>
-        <table>
-          <tbody>
-            <tr ng-repeat="var in tab.vars">
-              <td>{{var}}</td>
-              <td>
-                <input type="text" class="var-input" ng-model="vm.modifyVars[var]">
-                <button type="button" ng-click="vm.revert(var)" ng-disabled="vm.modifyVars[var] == vm.defaultVars[var]">Reset</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="content-area">
+  <a id="top-anchor"></a>
 
-    <!-- build:js vendors.js -->
-    <script src="../vendors/lodash/dist/lodash.min.js"></script>
-    <script src="../vendors/less/dist/less.js"></script>
-    <script src="../vendors/angular/angular.js"></script>
-    <!-- endbuild -->
+  <div ng-repeat="tab in vm.tabs">
+    <a id="{{tab.title}}"></a>
+    <h4>{{tab.title}} <a class="top-anchor-link" ng-click="vm.jumpToSection('top-anchor')">&uarr;</a></h4>
+    <table>
+      <tbody>
+      <tr ng-repeat="var in tab.vars">
+        <td>{{var}}</td>
+        <td>
+          <input type="text" class="var-input" ng-model="vm.modifyVars[var]">
+          <button type="button" ng-click="vm.revert(var)" ng-disabled="vm.modifyVars[var] == vm.defaultVars[var]">
+            Reset
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    <!-- build:js app.js -->
-    <script src="app.js"></script>
-    <script src="utils/utils.module.js"></script>
-    <script src="utils/background-port.service.js"></script>
-    <script src="utils/less.service.js"></script>
-    <!-- endbuild -->
-  </body>
+<!-- build:js vendors.js -->
+<script src="../vendors/lodash/dist/lodash.min.js"></script>
+<script src="../vendors/less/dist/less.js"></script>
+<script src="../vendors/angular/angular.js"></script>
+<!-- endbuild -->
+
+<!-- build:js app.js -->
+<script src="app.js"></script>
+<script src="utils/utils.module.js"></script>
+<script src="utils/background-port.service.js"></script>
+<script src="utils/less.service.js"></script>
+<!-- endbuild -->
+</body>
 </html>

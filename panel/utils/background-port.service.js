@@ -1,11 +1,12 @@
-angular.module('ibs.utils')
+angular
+  .module('ibs.utils')
 
-.factory('backgroundPort', function () {
-  'use strict';
+  .factory('backgroundPort', function () {
+    'use strict';
 
-  var port = chrome.runtime.connect({
-    name: 'devtools'
+    var port = chrome.runtime.connect({
+      name: 'devtools'
+    });
+
+    return port;
   });
-
-  return port;
-});
