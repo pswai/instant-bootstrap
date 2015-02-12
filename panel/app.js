@@ -57,7 +57,9 @@ angular
     function compileLess() {
       var url = '/bootstrap/' + vm.selectedVersion + '/less/bootstrap.less';
       var modifyVars = _.transform(vm.modifyVars, function (result, value, key) {
-        result[key.slice(1)] = value;
+        if (value !== vm.defaultVars[key]) {
+          result[key.slice(1)] = value;
+        }
       });
 
       return $http
