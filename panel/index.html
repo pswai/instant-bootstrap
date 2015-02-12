@@ -26,7 +26,10 @@
   </div>
 
   <!-- Anchors -->
-  <div class="sidebar-section-header">Categories</div>
+  <div class="sidebar-section-header">
+    Bootstrap
+    <select ng-model="vm.selectedVersion" ng-options="version for version in vm.versions"></select>
+  </div>
   <div class="sidebar-section-body anchor-section">
     <ul class="anchor-list">
       <li ng-repeat="tab in vm.tabs" ng-click="vm.jumpToSection(tab.title)">{{::tab.title}}</li>

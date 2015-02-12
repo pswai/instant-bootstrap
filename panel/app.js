@@ -15,7 +15,16 @@ angular
     });
   })
 
-  .controller('MainCtrl', function ($anchorScroll, $http, $location, backgroundPort, less) {
+  .constant('versions', [
+    '3.3.2',
+    '3.3.1',
+    '3.3.0',
+    '3.2.0',
+    '3.1.1',
+    '3.1.0'
+  ])
+
+  .controller('MainCtrl', function ($anchorScroll, $http, $location, $scope, backgroundPort, less, versions) {
     'use strict';
 
     var vm = this;
@@ -28,36 +37,25 @@ angular
     vm.update = update;
     vm.saveCss = saveCss;
     vm.saveVariables = saveVariables;
+    vm.selectedVersion = versions[0];
+    vm.versions = versions;
 
     activate();
 
     //////////
 
     function activate() {
-      $http
-        .get('/bootstrap/3.3.2/config.json')
-        .then(function (resp) {
-          _.forEach(resp.data, function (variables, sectionName) {
-            var section = {
-              title: sectionName,
-              vars: []
-            };
+      reloadSections(vm.selectedVersion);
 
-            _.forEach(variables, function (value, key) {
-              section.vars.push(key);
-
-              // Setup default values as well
-              vm.defaultVars[key] = value;
-              vm.modifyVars[key] = value;
-            });
-
-            vm.tabs.push(section);
-          });
-        });
+      $scope.$watch('vm.selectedVersion', function (newVersion, oldVersion) {
+        if (newVersion !== oldVersion) {
+          reloadSections(newVersion);
+        }
+      });
     }
 
     function compileLess() {
-      var url = '/bootstrap/3.3.2/less/bootstrap.less';
+      var url = '/bootstrap/' + vm.selectedVersion + '/less/bootstrap.less';
       var modifyVars = _.transform(vm.modifyVars, function (result, value, key) {
         result[key.slice(1)] = value;
       });
@@ -77,6 +75,33 @@ angular
     function jumpToSection(title) {
       $location.hash(title);
       $anchorScroll();
+    }
+
+    function reloadSections(version) {
+      vm.tabs = [];
+      vm.defaultVars = {};
+      vm.modifyVars = {};
+
+      $http
+        .get('/bootstrap/' + version + '/config.json')
+        .then(function (resp) {
+          _.forEach(resp.data, function (variables, sectionName) {
+            var section = {
+              title: sectionName,
+              vars: []
+            };
+
+            _.forEach(variables, function (value, key) {
+              section.vars.push(key);
+
+              // Setup default values as well
+              vm.defaultVars[key] = value;
+              vm.modifyVars[key] = value;
+            });
+
+            vm.tabs.push(section);
+          });
+        });
     }
 
     function revert(key) {
