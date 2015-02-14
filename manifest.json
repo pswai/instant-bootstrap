@@ -4,7 +4,6 @@
   "name": "Instant Bootstrap",
   "version": "0.0.4",
   "description": "Customize Bootstrap 3 on your page instantly!",
-  "options_page": "panel/index.html",
   "devtools_page": "devtools.html",
   "background": {
     "scripts": [

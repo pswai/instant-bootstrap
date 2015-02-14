@@ -22,3 +22,6 @@ chrome.runtime.onMessage.addListener(function (msg) {
     update(msg.css);
   }
 });
+
+// Refresh customization after page reload
+chrome.runtime.sendMessage('refresh');
